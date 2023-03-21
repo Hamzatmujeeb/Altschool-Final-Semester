@@ -1,191 +1,92 @@
 <script>
+  import axios from 'axios';
   
+  export default {
+    data() {
+      return {
+        repositories: [],
+        loading: false,
+        error: null,
+        page: 1,
+        perPage: 10,
+        hasMorePages: false,
+      };
+    },
+    methods: {
+      loadRepositories() {
+        this.loading = true;
+        axios
+          .get(`https://api.github.com/users/Hamzatmujeeb/repos?page=${this.page}&per_page=${this.perPage}`)
+          .then(response => {
+            this.repositories = response.data;
+            this.hasMorePages = response.headers.link.includes('rel="next"');
+          })
+          .catch(error => {
+            this.error = error.message;
+          })
+          .finally(() => {
+            this.loading = false;
+          });
+      },
+      loadMore() {
+        this.page++;
+        this.loadRepositories();
+      },
+    },
+    mounted() {
+      this.loadRepositories();
+    },
+  };
 </script>
 
 <template>
    <section class="repositories">
-    <hr />
-  <h2>QR-CODE</h2>
-  <div class="buttons">
-    <button class="public-button">Public</button>
-    <button class="star-button">Star</button>
-    <div class="filters">
-     <select id="type-select">
-      <option value="all"></option>
-      <option value="public">Public</option>
-      <option value="private">Private</option>
-    </select>
-    </div>
-  </div>
-  <hr />
-  <h2>sunnyside </h2>
-  <div class="buttons">
-    <button class="public-button">Public</button>
-    <button class="star-button">Star</button>
-    <div class="filters">
-     <select id="type-select">
-      <option value="all"></option>
-      <option value="public">Public</option>
-      <option value="private">Private</option>
-    </select>
-    </div>
-  </div>
-  <hr />
-  <h2>My-Website </h2>
-  <div class="buttons">
-    <button class="public-button">Public</button>
-    <button class="star-button">Star</button>
-    <div class="filters">
-     <select id="type-select">
-      <option value="all"></option>
-      <option value="public">Public</option>
-      <option value="private">Private</option>
-    </select>
-    </div>
-  </div>
-  <hr />
-  <h2>Landing-page </h2>
-  <div class="buttons">
-    <button class="public-button">Public</button>
-    <button class="star-button">Star</button>
-    <div class="filters">
-     <select id="type-select">
-      <option value="all"></option>
-      <option value="public">Public</option>
-      <option value="private">Private</option>
-    </select>
-    </div>
-  </div>
-  <hr />
-  <h2>AltschoolExamsProject </h2>
-  <div class="buttons">
-    <button class="public-button">Public</button>
-    <button class="star-button">Star</button>
-    <div class="filters">
-     <select id="type-select">
-      <option value="all"></option>
-      <option value="public">Public</option>
-      <option value="private">Private</option>
-    </select>
-    </div>
-  </div>
-  <hr />
-  <h2>calculator </h2>
-  <div class="buttons">
-    <button class="public-button">Public</button>
-    <button class="star-button">Star</button>
-    <div class="filters">
-     <select id="type-select">
-      <option value="all"></option>
-      <option value="public">Public</option>
-      <option value="private">Private</option>
-    </select>
-    </div>
-  </div>
-  <hr />
-  <h2>QR-CODE</h2>
-  <div class="buttons">
-    <button class="public-button">Public</button>
-    <button class="star-button">Star</button>
-    <div class="filters">
-     <select id="type-select">
-      <option value="all"></option>
-      <option value="public">Public</option>
-      <option value="private">Private</option>
-    </select>
-    </div>
-  </div>
-  <hr />
+      <ul>
+        <li v-for="repo in repositories" :key="repo.id">
+            <div>
+          <button>star</button> 
+           <select>
+             <option></option>
+           </select> <hr />
+            </div> 
+          <router-link :to="'/repo/' + repo.name">{{ repo.name }}</router-link>
+        </li> 
+      </ul>
+      <div v-if="loading">Loading...</div>
+      <div v-else-if="error">{{ error }}</div>
+      <button v-if="hasMorePages" @click="loadMore()">Load more</button>
+  
 </section>
 </template>
 
 <style>
- .repositories {
-  margin-top: 20px;
-  right: 2390px;
-  top: 250px;
-}
+     .repositories{
+          position: absolute;
+          top: 10px;
+          padding:40px;
+          margin:290px;
+          
+     }
 
-.repositories h2 {
-  font-size: 24px;
-  font-weight: bold;
-  right:950px;
-  top: 20px;
-  color: #0366d6;
-  font-size:20px;
-  font-weight: 700;
-}
+     li{
+        padding-top: 10px;
+        color: #2596be;
+        font-size: 30px;
+        list-style: none;
+        top:-50px;
+        padding-bottom: 20px;
+     }
 
-.repositories .buttons {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+     .public{
+            position: absolute;
+            width: 60px;
+            border-radius: 25px;
+            border: none;
+            top: -50px;
+            right: 10px;
+     }
 
-.repositories .buttons button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.repositories .buttons button:hover {
-  background-color: #ebeff5;
-}
-
-.repositories .buttons .public-button {
-  background-color: #f5f7fa;
-  color: #0366d6;
-  border-radius:22px;
-  font-size:10px;
-  top:-15px;
-  right:750px;
-}
-
-.repositories .buttons .star-button {
-  color: #000;
-  left:-600px;
-}
-
-.repositories .filters {
-  display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.repositories .filters label {
-  margin-right: 8px;
-  font-size: 14px;
-}
-
-.repositories .filters select {
-  padding: 5px;
-  top: 5px;
-  border: none;
-  left: -1000px;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-  width:45px;
-  height: 30px;
-  transition: all 0.2s ease-in-out;
-  background:#ebeff5;
-}
-
-.repositories .filters select:hover {
-  background-color: #ebeff5;
-}
-
-.repositories .filters select:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px #0366d6;
-}
-
-hr{
- width: 1000px;
- right: 980px;
-}
+     hr{
+        width: 1000px;
+     }
 </style>

@@ -3,75 +3,74 @@
 </script>
 
 <template>
-      <aside>
-       <div class="profile">
-        <img src="@/assets/image/avartar.png" alt="Profile Picture">
-        <h3>Hamzat Mujeeb</h3>
-       <button class="edit-profile"><i class="fas fa-edit"></i>Edit Profile</button>
-        <ul>
-        <li>Followers500</li>
-        <li>Following250</li>
-      </ul>
-    </div>
-  </aside>
+<div class="profile">
+  <div class="avatar">
+  <img src="@/assets/image/avartar.png" alt="Profile picture">
+  </div>
+  <h1>Hamzat Mujeeb</h1>
+  <div class="edit-button">
+    <button>Edit Profile</button>
+  </div>
+  <div class="follower-count">
+    <p>Followers</p>
+    <span>100</span>
+    <p>Followers</p>
+    <span>100</span>
+  </div>
+</div>
 </template>
 
 <style scoped>
-aside {
-  width: 200px;
-  padding: 20px;
-  right:1700px;
-  top: 170px;
+.profile {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:40px 0px 40px ;
 }
 
-aside .profile {
-  text-align: right;
-}
-
-aside .profile img {
+.avatar img {
   width: 300px;
+  height: 270px;
   border-radius: 50%;
-  margin-bottom: 10px;
-  background: none;
+  object-fit: cover;
+  object-position: center;
 }
 
-aside .profile h3 {
-  font-size: 18px;
-  margin: 0;
-}
-
-aside .profile  ul {
+.follower-count {
   display: flex;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+  flex-direction: row;
+  align-items: center;
+  margin: 27px 10px 0 10px;
 }
 
-aside .profile ul li {
-  margin-bottom: 15px;
-  font-size: 15px;
-  margin:auto 3px auto;
-  padding: 2px;
-  font-weight: 300;
-  line-height: normal;
-  padding: 10px;
+.follower-count p {
+  margin: 10px;
 }
-.edit-profile {
-  background-color: #e1e3e1;
+
+.follower-count span {
+  font-size: 1rem;
+  font-weight:200;
+}
+
+.edit-button {
+  margin-top: 20px;
+}
+
+.edit-button button {
+  padding: 10px 20px;
+  background-color: #ddd;
+  width: 260px;
   color: #000;
-  border: none; 
-  width: 300px;
-  padding: 10px 10px;
-  border-radius: 5px;
-  font-size: 16px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
   cursor: pointer;
 }
 
-.edit-profile:hover {
-  background-color: #Cfcfc9;
+.edit-button button:hover {
+  background-color: #f1f3f5;
 }
 
-.edit-profile i {
-  margin-right: 5px;
-}
 </style>

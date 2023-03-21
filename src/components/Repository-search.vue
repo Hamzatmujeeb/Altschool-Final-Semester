@@ -3,8 +3,8 @@
 </script>
 
 <template>
-  <hr />
  <div class="search-container">
+   <div class="search">
   <form action="#" method="get">
     <input type="text" placeholder="Find a repository" name="search">
     <select name="type">
@@ -27,6 +27,7 @@
     </select>
     <button type="submit" class="new-repo">New</button>
   </form>
+  </div>
 </div>
 </template>
 
@@ -34,12 +35,16 @@
    
 /* Style for the search container */
 .search-container {
-  display: flex;
-  align-items: center;
-  top: -30px;
-  right: 2500px;
+    position: absolute;
+     display: flex;
+    align-items: center;
+  top: 250px;
+  right: 300px;
 }
 
+.search{
+    top: 29px;
+}
 /* Style for the search form */
 .search-container form {
   display: flex;
@@ -51,7 +56,9 @@
 .search-container input[type="text"] {
   width: 600px;
   padding: 8px;
-  margin-right: 7px;
+  margin-left:0px;
+  top: -90px;
+  right:-290px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 14px;
@@ -59,11 +66,17 @@
 
 /* Style for the search select elements */
 .search-container select {
-  padding: 8px;
-  margin: 5px;
+  padding: 5px;
+  margin: 6px;
+  width: 100px;
+  height: 33px;
+  right: -300px;
+  top:-90px;
+  background: hwb(0 96% 3%);
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 14px;
+
 }
 
 /* Style for the search button */
@@ -78,12 +91,9 @@
   cursor: pointer;
 }
 
-.sort-button{
-        top: 2px;
-        left: -10px;
-}
 .search-container button:hover {
   background-color: #2c974b;
+  margin: 80px;
 }
 
 /* Style for the "New" button */
@@ -91,13 +101,13 @@
   background-color: #2c974b;
   color: white;
   border: none;
-  bottom: 78px;
-  left: 930px;
   padding: 8px 12px;
   border-radius: 5px;
   font-size: 14px;
   cursor: pointer;
-  margin-left: 10px;
+  margin: 60px;
+   top:-190px;
+  right: -1200px;
 }
 
 .search-container .new-repo:hover {

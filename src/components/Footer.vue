@@ -3,80 +3,71 @@
 </script>
 
 <template>
- <footer>
-  <nav>
-     <ul>
-        <li><a href="#">Pull Requests</a></li>
-        <li><a href="#">Issues</a></li>
-        <li><a href="#">Marketplace</a></li>
-        <li><a href="#">Explore</a></li>
-     </ul>
-  </nav>
+ <footer class="github-footer">
+  <div class="container">
+    <div class="footer-logo">
+      <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub logo">
+    </div>
+    <span>&copy; 2023 GitHub, Inc.</span>
+    <div class="footer-links">
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+      <a href="#">Security</a>
+      <a href="#">Contact GitHub</a>
+      <a href="#">API</a>
+      <a href="#">Training</a>
+      <a href="#">Blog</a>
+      <a href="#">About</a>
+    </div>
+  </div>
+</footer>
 
- </footer>
+
 </template>
  
 <style scoped>
-  footer {
+ .github-footer {
+  background-color: none;
+  color: #000;
+  padding: 32px 0;
+  top:71rem;
+}
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding:20px;
-  background-color:#fff;
-  border-bottom: 1px solid #ddd;
-  width: 1000px;
-  top:300px;
-  top: 500px;
-  right:3000px;
+  flex-wrap: wrap;
 }
 
+.footer-links a {
+  color: hsl(245, 75%, 62%);
+  margin-right: 26px;
+  text-decoration-line: none;
 
-nav ul {
-  display: flex;
-  list-style-type: none;
-  margin: 10px;
-  padding: 10px;
 }
 
-nav ul li {
-  right: 740px;
-  margin: 20px;
+.footer-logo img {
+  width: 32px;
+  height: 32px;
+  margin-right: 16px;
 }
 
-nav ul li:last-child {
-  margin-right: 0;
-}
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
+.footer-info {
   display: flex;
   align-items: center;
-  font-size: 14px;
 }
 
-nav ul li a i {
-  margin-left: 5px;
+.footer-info span {
+  margin-right: 16px;
 }
 
-footer ul {
-    display: flex;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    top: 100px;
+.footer-info a {
+  color: #ffffff;
+  margin-right: 16px;
 }
 
-footer  ul li {
-  right: 940px;
-  margin: 10px;
-}
 
-footer ul li a {
-  color: #000;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-}
 </style>
